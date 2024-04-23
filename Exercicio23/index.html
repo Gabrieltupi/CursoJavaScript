@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body{font-family: sans-serif;}
+        label{display: block;}
+        input{margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <div>
+        <label>Calculador</label>
+        <input type="text" value="0" readonly data-js="visor"/>
+    </div>    
+
+    <div class="numerosBotoes">
+        <button  data-js="bot" value="0">0</button>
+        <button  data-js="bot" value="1">1</button>
+        <button  data-js="bot" value="2">2</button>
+        <button  data-js="bot" value="3">3</button>
+        <button  data-js="bot" value="4">4</button>
+        <button  data-js="bot" value="5">5</button>
+        <button  data-js="bot" value="6">6</button>
+        <button  data-js="bot" value="7">7</button>
+        <button  data-js="bot" value="8">8</button>
+        <button  data-js="bot" value="9">9</button>
+    </div>
+
+    <div class="operacoesBotoes">
+        <button  data-js="operacao" value="+">+</button>
+        <button  data-js="operacao" value="-">-</button>
+        <button  data-js="operacao" value="x">x</button>
+        <button  data-js="operacao" value="%">%</button>
+        <button  data-js="operacao" value="CE">CE</button>
+        <button  data-js="operacao" value="=">=</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

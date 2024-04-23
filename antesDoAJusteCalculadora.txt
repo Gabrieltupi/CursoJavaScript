@@ -1,0 +1,75 @@
+(function(win,doc){
+    'use strict'
+//cabeçalho (atributos)
+    var $visor=doc.querySelector('[data-js="visor"]');
+    var $numerosBotoes= doc.querySelectorAll('[data-js="bot"]');
+    var $operacoesBotoes=doc.querySelectorAll('[data-js="operacao"]');
+    var numerosArray= Array.from($numerosBotoes);
+    var operacaoArray=Array.from($operacoesBotoes);
+    numerosArray.forEach(function(button){
+        button.addEventListener('click',cliqueNumeros,false)
+    });
+    operacaoArray.forEach(function(button){
+        button.addEventListener('click',cliqueOperacao,false)
+    });
+
+
+
+//funções
+    function cliqueNumeros(){
+        if($visor.value==0){
+            return $visor.value= this.value;
+        }
+        $visor.value+=this.value;
+    }
+
+    function cliqueOperacao(){
+        var operacoes=['x','-','+','%'];
+        // var ultimo= $visor.value.slice(-1);
+        // if(operacoes.includes(ultimo)){
+        //     $visor
+        // }
+        if(operacoes.includes(this.value)){
+            ultimoCaractereOperacao(this);
+        }
+        if(this.value==="CE"){
+            $visor.value=0;
+            return;
+        }
+        if(this.value==="="){
+            ultimoCaractereOperacao(this);
+            realizarOperacao();
+            return;
+        }
+        $visor.value+=this.value;
+    };
+
+    function ultimoCaractereOperacao(botao){
+      var operacoes=['x','-','+','%'];
+      var ultimo=$visor.value.slice(-1);
+
+      if (operacoes.includes(ultimo)&&botao.value==="="){
+        return $visor.value=$visor.value.slice(0,-1);
+      }
+
+      if(operacoes.includes(ultimo)){
+        $visor.value=$visor.value.slice(0,-1);
+      }
+    }
+
+    function realizarOperacao(){
+        var expressao=$visor.value;
+        var resultado;
+        var ultimo=$visor.value.slice(-1);
+        if(ultimo==="="){
+            expressao= expressao.slice(0,-1);
+        }
+        expressao = expressao.replace(/x/g, '*').replace(/%/g, '/');
+
+        resultado=eval(expressao);
+        $visor.value=resultado;
+    };
+
+
+
+})(window,document);
